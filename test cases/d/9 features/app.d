@@ -66,6 +66,13 @@ void main (string[] args)
             exit(0);
     }
 
+    version (With_ExternalDep) {
+        import code;
+
+        if(fileAvail())
+            exit(0);
+    }
+
     // we fail here
     exit (1);
 }

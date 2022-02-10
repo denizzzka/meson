@@ -45,6 +45,17 @@ e_test = executable('dapp_test',
 )
 test('dapp_test', e_test)
 
+external_prj_dep = subproject('some_prj').get_variable('some_prj_dep')
+
+# test external d_* arguments passing
+e_external_dep = executable('dapp_external_dep',
+    test_src,
+    dependencies: external_prj_dep,
+    d_import_dirs: [data_dir],
+    d_module_versions: ['With_ExternalDep'],
+)
+test('dapp_external_dep', e_external_dep, args: ['debug'])
+
 # test version level
 e_version_int = executable('dapp_version_int',
     test_src,
